@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MysticMiles - Explore India</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="MysticMiles2.0\MysticMiles(no Background).png" alt="MysticMiles Logo" height="50" width="90">
+            <span class="lname">MysticMiles</span>
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#hotels">Hotels</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="#login" class="btn btn-secondary">Login</a>
+            <a href="#signup" class="btn btn-primary">Sign Up</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover the Magic of India</h1>
+            <p>Explore ancient traditions, vibrant cultures, and breathtaking landscapes</p>
+            <a href="#destinations" class="btn btn-primary">Start Your Journey</a>
+        </div>
+    </section>
+
+    <section class="section" id="destinations">
+        <div class="section-title">
+            <h2>Popular Destinations</h2>
+        </div>
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <img src="MysticMiles2.0\tajmahal.jpg" alt="Taj Mahal">
+                <div class="content">
+                    <h3>Taj Mahal, Agra</h3>
+                    <p>Symbol of eternal love and one of the world's most iconic monuments.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="MysticMiles2.0\kerala.jpg" alt="Kerala Backwaters">
+                <div class="content">
+                    <h3>Kerala Backwaters</h3>
+                    <p>Serene waterways and traditional houseboats in God's Own Country.</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="MysticMiles2.0\varanasi ghat.webp" alt="Varanasi Ghats">
+                <div class="content">
+                    <h3>Varanasi Ghats</h3>
+                    <p>Ancient spiritual center on the banks of the holy Ganges River.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="search-container">
+            <h2>Find Your Perfect Destination</h2>
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search destinations, hotels, or packages...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-title">
+            <h2>Explore India</h2>
+        </div>
+        <div id="india-map"></div>
+    </section>
+
+    <section class="section" id="news">
+        <div class="section-title">
+            <h2>Travel News & Updates</h2>
+        </div>
+        <div class="news-feed">
+            <div class="news-item">
+                <h3>New Direct Flights to Popular Tourist Destinations</h3>
+                <p>Improved connectivity makes travel easier than ever...</p>
+            </div>
+            <div class="news-item">
+                <h3>Cultural Festivals Calendar 2024</h3>
+                <p>Plan your trip around India's most vibrant celebrations...</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="chatbot">
+        <div class="chat-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-window">
+            <!-- Chat interface will be dynamically populated -->
+        </div>
+    </div>
+    <section class="section" id="booking">
+        <div class="section-title">
+            <h2>Book Hotels & Restaurants</h2>
+        </div>
+        <div class="booking-container">
+            <div class="booking-tabs">
+                <button class="tab-btn active" onclick="switchTab('hotels')">Hotels</button>
+                <button class="tab-btn" onclick="switchTab('restaurants')">Restaurants</button>
+            </div>
+            
+            <div class="booking-content" id="hotels-content">
+                <form class="booking-form" id="hotel-booking-form">
+                    <div class="form-group">
+                        <label for="hotel-city">City</label>
+                        <select id="hotel-city" required>
+                            <option value="">Select City</option>
+                            <option value="delhi">New Delhi</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="kolkata">Kolkata</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-in">Check-in Date</label>
+                        <input type="date" id="check-in" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="check-out">Check-out Date</label>
+                        <input type="date" id="check-out" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <input type="number" id="guests" min="1" max="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hotel-type">Hotel Type</label>
+                        <select id="hotel-type" required>
+                            <option value="">Select Type</option>
+                            <option value="luxury">Luxury</option>
+                            <option value="business">Business</option>
+                            <option value="budget">Budget</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search Hotels</button>
+                </form>
+            </div>
+            
+            <div class="booking-content" id="restaurants-content" style="display: none;">
+                <form class="booking-form" id="restaurant-booking-form">
+                    <div class="form-group">
+                        <label for="restaurant-city">City</label>
+                        <select id="restaurant-city" required>
+                            <option value="">Select City</option>
+                            <option value="delhi">New Delhi</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="kolkata">Kolkata</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cuisine">Cuisine Type</label>
+                        <select id="cuisine" required>
+                            <option value="">Select Cuisine</option>
+                            <option value="indian">Indian</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="italian">Italian</option>
+                            <option value="continental">Continental</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="party-size">Party Size</label>
+                        <input type="number" id="party-size" min="1" max="20" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Find Restaurants</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="feedback">
+        <div class="section-title">
+            <h2>Share Your Experience</h2>
+        </div>
+        <div class="feedback-container">
+            <form class="feedback-form" id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-type">Type of Feedback</label>
+                    <select id="feedback-type" required>
+                        <option value="">Select Type</option>
+                        <option value="hotel">Hotel Experience</option>
+                        <option value="restaurant">Restaurant Experience</option>
+                        <option value="tour">Tour Experience</option>
+                        <option value="general">General Feedback</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <input type="hidden" id="rating" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-title">Title</label>
+                    <input type="text" id="feedback-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Your Message</label>
+                    <textarea id="feedback-message" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="upload-photos">Upload Photos (optional)</label>
+                    <input type="file" id="upload-photos" multiple accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About MysticMiles</h3>
+                <p>Your trusted partner for exploring the diverse beauty and culture of India.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#packages">Tour Packages</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal</li>
+                    <li><i class="fas fa-phone"></i> +91 1234567890</li>
+                    <li><i class="fas fa-envelope"></i> info@mysticmiles.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MysticMiles. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="Script.js"></script>
+</body>
+</html>
