@@ -12,15 +12,14 @@
 <body>
     <nav>
         <div class="logo-container">
-            <img src="MysticMiles(no Background).png" alt="MysticMiles Logo" height="50" width="90">
-            <span class="lname">MysticMiles</span>
+            <a href="index.html"><img src="MysticMiles(no Background).png" alt="MysticMiles Logo" height="50" width="90"></a>
         </div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#hotels">Hotels</a></li>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#booking">Hotels & Restaurants</a></li>
+            <li><a href="tour.html">Tour Packages</a></li>
+            <li><a href="about_us.html">About</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="auth-buttons">
@@ -30,10 +29,76 @@
     </nav>
 
     <section class="hero" id="home">
+    <!-- Animated Background Slideshow -->
+        <div class="hero-slideshow">
+            <div class="hero-slide active"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+    
+        <!-- Gradient Overlay -->
+        <div class="hero-overlay"></div>
+    
+        <!-- Floating Particles -->
+        <div class="hero-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    
+        <!-- Hero Content -->
         <div class="hero-content">
-            <h1>Discover the Magic of India</h1>
-            <p>Explore ancient traditions, vibrant cultures, and breathtaking landscapes</p>
-            <a href="#destinations" class="btn btn-primary">Start Your Journey</a>
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> #1 Rated Travel Experience in India
+            </div>
+        
+            <h1 class="hero-title">
+                Discover the <span class="highlight">Magic</span> of India
+            </h1>
+        
+            <p class="hero-subtitle">
+                Embark on extraordinary journeys through ancient palaces, vibrant markets, 
+                serene backwaters, and mystical temples. Create memories that last a lifetime 
+                with our expertly curated experiences.
+            </p>
+        
+            <div class="hero-cta">
+                <a href="#destinations" class="btn btn-primary">
+                    <i class="fas fa-compass"></i>
+                    Start Your Adventure
+                </a>
+                <a href="about_us.html" class="btn btn-secondary">
+                    <i class="fas fa-play"></i>
+                    Learn About Us
+                </a>
+            </div>
+        
+            <!-- Quick Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Happy Travelers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Destinations</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9★</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
@@ -243,19 +308,15 @@
     <footer>
         <div class="footer-container">
             <div class="footer-section">
-                <h3>About MysticMiles</h3>
-                <p>Your trusted partner for exploring the diverse beauty and culture of India.</p>
-            </div>
-            <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="#destinations">Destinations</a></li>
-                    <li><a href="#packages">Tour Packages</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="tour.html">Tour Packages</a></li>
+                    <li><a href="about_us.html">About Us</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
+            <div class="footer-section" id="contact">
                 <h3>Contact Info</h3>
                 <ul>
                     <li><i class="fas fa-map-marker-alt"></i> Kolkata, West Bengal</li>

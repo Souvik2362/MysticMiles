@@ -8,7 +8,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
+// Enhanced slideshow functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+    
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    // Change slide every 6 seconds
+    setInterval(nextSlide, 7000);
+    
+    // Smooth scroll for CTA button
+    document.querySelector('.btn-primary').addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 // Replace your existing map initialization code with this robust version:
 function initializeMap() {
     try {
