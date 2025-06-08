@@ -429,7 +429,7 @@ nav ul li a:hover {
     }
 }
 
-/* Enhanced Chatbot Styles */
+/* Chatbot Styles */
 .chatbot {
     position: fixed;
     bottom: 20px;
@@ -795,7 +795,7 @@ footer {
     nav {
         flex-direction: column;
         padding: 10px;
-        position: relative; /* Add this to make absolute positioning work for child elements */
+        position: relative;
     }
 
     nav ul {
@@ -807,7 +807,7 @@ footer {
         flex-direction: column;
         padding: 20px 0;
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        display: none; /* Initially hidden - you'll need JavaScript to toggle this */
+        display: none;
     }
 
     .auth-buttons {
@@ -817,7 +817,7 @@ footer {
         background: linear-gradient(to right, #1a237e, #283593);
         padding: 10px 20px;
         border-radius: 0 0 0 10px;
-        margin-top: 0; /* Remove the existing margin-top */
+        margin-top: 0;
     }
 
     .hero-content h1 {

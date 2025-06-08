@@ -2,13 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         img.addEventListener('error', function() {
-            // Replace with placeholder or hide
             this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBBdmFpbGFibGU8L3RleHQ+PC9zdmc+';
             this.alt = 'Image not available';
         });
     });
 });
-// Enhanced slideshow functionality
+// slideshow functionality
 document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.hero-slide');
     let currentSlide = 0;
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-// Replace your existing map initialization code with this robust version:
+//  Map initialization code :
 function initializeMap() {
     try {
         const mapContainer = document.getElementById('india-map');
@@ -50,13 +49,12 @@ function initializeMap() {
             return;
         }
 
-        // Your existing map code here...
         const map = L.map('india-map').setView([20.5937, 78.9629], 5);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // FIXED: Proper marker creation with enhanced popups
+        // Proper marker creation with enhanced popups
         const destinations = [
             { name: 'Taj Mahal', coords: [27.1751, 78.0421] },
             { name: 'Kerala Backwaters', coords: [9.4981, 76.3388] },
@@ -65,7 +63,7 @@ function initializeMap() {
             { name: 'Goa', coords: [15.2993, 74.1240] }
         ];
 
-        // FIXED: Custom icon definition (optional - only if you have custom icons)
+        // Custom icon definition
         const customIcon = L.icon({
             iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
@@ -75,7 +73,7 @@ function initializeMap() {
             shadowSize: [41, 41]
         });
 
-        // FIXED: Proper marker creation loop
+        // Proper marker creation loop
         destinations.forEach(dest => {
             L.marker(dest.coords, { icon: customIcon })
                 .bindPopup(`
@@ -105,12 +103,10 @@ function initializeMap() {
     }
 }
 
-// Update the DOM ready event to use the new initialization function
 document.addEventListener('DOMContentLoaded', function() {
     initializeMap();
 });
 
-// Update resize function to use the global map instance
 function resizeMap() {
     if (window.mapInstance) {
         setTimeout(() => {
@@ -132,7 +128,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
 });
 
 
-// Enhanced Chatbot functionality
+// Chatbot functionality
 const chatIcon = document.querySelector('.chat-icon');
 const chatWindow = document.querySelector('.chat-window');
 let isChatOpen = false;
@@ -239,7 +235,7 @@ function hideTypingIndicator() {
     typingIndicator.style.display = 'none';
 }
 
-// Enhanced bot logic
+// bot logic
 const cities = [
     'delhi', 'mumbai', 'kolkata', 'chennai', 'bangalore', 'bengaluru',
     'hyderabad', 'goa', 'agra', 'jaipur', 'pune', 'ahmedabad', 'surat',
@@ -455,7 +451,7 @@ function validateBookingForm(formId) {
     return isValid;
 }
 
-// Update form submissions - Replace your existing hotel booking form handler with this:
+// form submissions
 document.getElementById('hotel-booking-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -529,7 +525,7 @@ function updateStars(rating) {
     });
 }
 
-// Add this new function for resetting star ratings
+// resetting star ratings
 function resetStarRating() {
     const stars = document.querySelectorAll('.star-rating i');
     const ratingInput = document.getElementById('rating');

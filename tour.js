@@ -113,6 +113,7 @@ const tourPackages = [
         days: 7,
         budget: "premium",
         type: "honeymoon",
+        
         image: "Romantic_Kerala_Honeymoon.jpg",
         description: "Perfect romantic getaway with luxury resorts, private beaches, and couple spa treatments.",
         highlights: ["Luxury resorts", "Couple spa", "Private dining", "Sunset cruises", "Beach walks"],
@@ -216,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderPackages(filteredPackages);
 });
 
-// Add smooth scroll behavior
+// smooth scroll behavior
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
