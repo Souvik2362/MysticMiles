@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MysticMiles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="back-home">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+    </div>
+
+    <!-- Signup Container -->
+    <div class="signup-container">
+        <div class="signup-header">
+            <div class="logo">
+                <i class="fas fa-compass"></i>
+            </div>
+            <h1 class="signup-title">Join MysticMiles</h1>
+            <p class="signup-subtitle">Create your account and start your adventure</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            Account created successfully! Redirecting to login...
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="errorText">Please fill in all required fields</span>
+        </div>
+
+        <form class="signup-form" id="signupForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-input" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-input" id="lastName" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-input" id="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" class="form-input" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" class="form-input" id="birthDate" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-venus-mars"></i>
+                <select class="form-select" id="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-input" id="password" placeholder="Password" required>
+                <div class="password-strength" id="passwordStrength">
+                    <div class="strength-bar">
+                        <div class="strength-fill"></div>
+                    </div>
+                    <div class="strength-text">Password strength: <span id="strengthText">Weak</span></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-input" id="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+
+            <div class="terms-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms" class="terms-text">
+                    I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and 
+                    <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                </label>
+            </div>
+
+            <div class="terms-group">
+                <input type="checkbox" id="newsletter">
+                <label for="newsletter" class="terms-text">
+                    I would like to receive updates and promotional emails
+                </label>
+            </div>
+
+            <button type="submit" class="signup-btn">
+                <div class="loading"></div>
+                Create Account
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>or sign up with</span>
+        </div>
+
+        <div class="social-login">
+            <a href="#" class="social-btn" onclick="socialSignup('google')">
+                <i class="fab fa-google"></i>
+                Google
+            </a>
+            <a href="#" class="social-btn" onclick="socialSignup('facebook')">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+            </a>
+        </div>
+
+        <div class="login-link">
+            Already have an account? <a href="login.html">Sign in here</a>
+        </div>
+    </div>
+    <script src="signup.js"></script>
+</body>
+</html>

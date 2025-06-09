@@ -22,16 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(nextSlide, 7000);
     
     // Smooth scroll for CTA button
-    document.querySelector('.btn-primary').addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
+});
+
 });
 //  Map initialization code :
 function initializeMap() {
