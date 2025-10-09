@@ -10,17 +10,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" rel="stylesheet">
 </head>
 <body>
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
         <div class="logo-container">
-            <a href="index.html"><img src="MysticMiles(no Background).png" alt="MysticMiles Logo" height="50" width="90"></a>
+            <a href="index.html" aria-label="MysticMiles home"><img src="MysticMiles(no Background).png" alt="MysticMiles Logo" height="50" width="90"></a>
         </div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#destinations">Destinations</a></li>
-            <li><a href="#booking">Hotels & Restaurants</a></li>
-            <li><a href="tour.html">Tour Packages</a></li>
-            <li><a href="about_us.html">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <ul role="menubar">
+            <li role="none"><a href="#home" role="menuitem">Home</a></li>
+            <li role="none"><a href="#destinations" role="menuitem">Destinations</a></li>
+            <li role="none"><a href="#booking" role="menuitem">Hotels & Restaurants</a></li>
+            <li role="none"><a href="tour.html" role="menuitem">Tour Packages</a></li>
+            <li role="none"><a href="about_us.html" role="menuitem">About</a></li>
+            <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
         </ul>
         <div class="auth-buttons">
             <a href="login.html" class="btn btn-secondary">Login</a>
@@ -146,7 +146,7 @@
         </div>
     </section>
 
-    <!-- Map -->>
+    <!-- Map -->
     <section class="section">
         <div class="section-title">
             <h2>Explore India</h2>
@@ -347,6 +347,6 @@
         </div>
     </footer>
     
-    <script src="Script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

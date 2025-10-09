@@ -1,152 +1,51 @@
-// Sample tour packages data
-const tourPackages = [
-    {
-        id: 1,
-        title: "Royal Rajasthan Heritage Tour",
-        destination: "rajasthan",
-        duration: "8-14",
-        days: 10,
-        budget: "premium",
-        type: "cultural",
-        image: "Royal_Rajasthan_Heritage_Tour.jpg",
-        description: "Explore the majestic palaces, forts, and vibrant culture of Rajasthan. Visit Jaipur, Udaipur, Jodhpur, and Jaisalmer.",
-        highlights: ["Palace visits", "Desert safari", "Cultural shows", "Local cuisine", "Heritage hotels"],
-        originalPrice: 85000,
-        currentPrice: 72000,
-        badge: "Popular"
-    },
-    {
-        id: 2,
-        title: "Kerala Backwaters Escape",
-        destination: "kerala",
-        duration: "4-7",
-        days: 6,
-        budget: "standard",
-        type: "relaxation",
-        image: "Kerala_Backwaters_Escape.jpg",
-        description: "Cruise through tranquil backwaters, enjoy Ayurvedic treatments, and experience Kerala's natural beauty.",
-        highlights: ["Houseboat stay", "Ayurvedic spa", "Tea plantation visit", "Spice gardens", "Beach relaxation"],
-        originalPrice: 45000,
-        currentPrice: 38000,
-        badge: "Best Value"
-    },
-    {
-        id: 3,
-        title: "Goa Beach Paradise",
-        destination: "goa",
-        duration: "4-7",
-        days: 5,
-        budget: "standard",
-        type: "relaxation",
-        image: "Goa_Beach_Paradise.jpg",
-        description: "Relax on pristine beaches, explore Portuguese heritage, and enjoy vibrant nightlife in Goa.",
-        highlights: ["Beach activities", "Water sports", "Historical tours", "Local markets", "Sunset cruises"],
-        originalPrice: 35000,
-        currentPrice: 28000,
-        badge: "Hot Deal"
-    },
-    {
-        id: 4,
-        title: "Himalayan Adventure Trek",
-        destination: "himachal",
-        duration: "8-14",
-        days: 12,
-        budget: "standard",
-        type: "adventure",
-        image: "Himalayan_Adventure_Trek.jpg",
-        description: "Challenge yourself with trekking in the mighty Himalayas, visit ancient temples, and experience mountain culture.",
-        highlights: ["Mountain trekking", "Temple visits", "Local villages", "Camping", "Photography"],
-        originalPrice: 55000,
-        currentPrice: 48000,
-        badge: "Adventure"
-    },
-    {
-        id: 5,
-        title: "Golden Triangle Classic",
-        destination: "golden-triangle",
-        duration: "4-7",
-        days: 7,
-        budget: "standard",
-        type: "cultural",
-        image: "Golden_Triangle_Classic.jpg",
-        description: "Discover India's most iconic destinations: Delhi, Agra, and Jaipur. Perfect introduction to Indian heritage.",
-        highlights: ["Taj Mahal visit", "Red Fort", "Amber Palace", "Local cuisine", "Shopping tours"],
-        originalPrice: 42000,
-        currentPrice: 35000,
-        badge: "Classic"
-    },
-    {
-        id: 6,
-        title: "Kashmir Valley Beauty",
-        destination: "kashmir",
-        duration: "4-7",
-        days: 6,
-        budget: "premium",
-        type: "relaxation",
-        image: "Kashmir_Valley_Beauty.jpg",
-        description: "Experience the paradise on earth with Dal Lake, Mughal gardens, and snow-capped mountains.",
-        highlights: ["Houseboat stay", "Shikara rides", "Mughal gardens", "Local handicrafts", "Mountain views"],
-        originalPrice: 65000,
-        currentPrice: 58000,
-        badge: "Scenic"
-    },
-    {
-        id: 7,
-        title: "Uttarakhand Spiritual Journey",
-        destination: "uttarakhand",
-        duration: "8-14",
-        days: 9,
-        budget: "budget",
-        type: "spiritual",
-        image: "Uttarakhand_Spiritual_Journey.jpg",
-        description: "Visit sacred temples, attend evening aarti, and find inner peace in the spiritual capital of India.",
-        highlights: ["Temple visits", "Ganga aarti", "Yoga sessions", "Meditation", "Holy dips"],
-        originalPrice: 25000,
-        currentPrice: 18000,
-        badge: "Spiritual"
-    },
-    {
-        id: 8,
-        title: "Romantic Kerala Honeymoon",
-        destination: "kerala",
-        duration: "4-7",
-        days: 7,
-        budget: "premium",
-        type: "honeymoon",
-        
-        image: "Romantic_Kerala_Honeymoon.jpg",
-        description: "Perfect romantic getaway with luxury resorts, private beaches, and couple spa treatments.",
-        highlights: ["Luxury resorts", "Couple spa", "Private dining", "Sunset cruises", "Beach walks"],
-        originalPrice: 95000,
-        currentPrice: 82000,
-        badge: "Romantic"
-    }
-];
+import { getAllPackages, getFilteredPackages, getDurationRange, formatPrice } from './js/tour-packages.js';
+import { createTourBooking } from './js/booking.js';
+import { getCurrentUser } from './js/supabase-client.js';
 
-let filteredPackages = [...tourPackages];
+let allPackages = [];
+
+async function loadPackages() {
+    const loadingDiv = document.getElementById('loading');
+    const packagesGrid = document.getElementById('packagesGrid');
+
+    loadingDiv.style.display = 'block';
+    packagesGrid.style.display = 'none';
+
+    const result = await getAllPackages();
+
+    loadingDiv.style.display = 'none';
+    packagesGrid.style.display = 'grid';
+
+    if (result.success) {
+        allPackages = result.packages;
+        renderPackages(allPackages);
+    } else {
+        document.getElementById('noResults').style.display = 'block';
+    }
+}
 
 function renderPackages(packages) {
     const grid = document.getElementById('packagesGrid');
     const noResults = document.getElementById('noResults');
-    
+
     if (packages.length === 0) {
         grid.innerHTML = '';
         noResults.style.display = 'block';
         return;
     }
-    
+
     noResults.style.display = 'none';
-    
+
     grid.innerHTML = packages.map(pkg => `
         <div class="package-card">
-            <div class="package-image" style="background-image: url('${pkg.image}')">
-                <div class="package-badge">${pkg.badge}</div>
+            <div class="package-image" style="background-image: url('${pkg.image_url}')">
+                <div class="package-badge">${pkg.badge || 'Available'}</div>
             </div>
             <div class="package-content">
                 <div class="package-title">${pkg.title}</div>
                 <div class="package-duration">
                     <i class="fas fa-clock"></i>
-                    ${pkg.days} Days / ${pkg.days - 1} Nights
+                    ${pkg.duration_days} Days / ${pkg.duration_days - 1} Nights
                 </div>
                 <div class="package-description">${pkg.description}</div>
                 <ul class="package-highlights">
@@ -156,11 +55,11 @@ function renderPackages(packages) {
                 </ul>
                 <div class="package-price">
                     <div class="price-info">
-                        <div class="current-price">₹${pkg.currentPrice.toLocaleString()}</div>
-                        <div class="original-price">₹${pkg.originalPrice.toLocaleString()}</div>
+                        <div class="current-price">${formatPrice(pkg.current_price)}</div>
+                        <div class="original-price">${formatPrice(pkg.original_price)}</div>
                         <div class="per-person">per person</div>
                     </div>
-                    <button class="book-btn" onclick="bookPackage(${pkg.id})">
+                    <button class="book-btn" onclick="bookPackage('${pkg.id}', '${pkg.title}', ${pkg.current_price})">
                         Book Now
                     </button>
                 </div>
@@ -169,60 +68,87 @@ function renderPackages(packages) {
     `).join('');
 }
 
-function applyFilters() {
+window.applyFilters = async function() {
     const loading = document.getElementById('loading');
+    const packagesGrid = document.getElementById('packagesGrid');
     const destination = document.getElementById('destination').value;
     const duration = document.getElementById('duration').value;
     const budget = document.getElementById('budget').value;
     const type = document.getElementById('type').value;
 
     loading.style.display = 'block';
-    document.getElementById('packagesGrid').style.display = 'none';
+    packagesGrid.style.display = 'none';
 
-    setTimeout(() => {
-        filteredPackages = tourPackages.filter(pkg => {
-            let matches = true;
-            
-            if (destination && pkg.destination !== destination) matches = false;
-            if (duration && pkg.duration !== duration) matches = false;
-            if (budget && pkg.budget !== budget) matches = false;
-            if (type && pkg.type !== type) matches = false;
-            
-            return matches;
-        });
+    const filters = {};
+    if (destination) filters.destination = destination;
+    if (duration) filters.duration = duration;
+    if (budget) filters.budget = budget;
+    if (type) filters.type = type;
 
-        loading.style.display = 'none';
-        document.getElementById('packagesGrid').style.display = 'grid';
-        renderPackages(filteredPackages);
-    }, 1000);
-}
+    const result = await getFilteredPackages(filters);
 
-function clearFilters() {
+    loading.style.display = 'none';
+    packagesGrid.style.display = 'grid';
+
+    if (result.success) {
+        renderPackages(result.packages);
+    } else {
+        document.getElementById('noResults').style.display = 'block';
+    }
+};
+
+window.clearFilters = function() {
     document.getElementById('destination').value = '';
     document.getElementById('duration').value = '';
     document.getElementById('budget').value = '';
     document.getElementById('type').value = '';
-    
-    filteredPackages = [...tourPackages];
-    renderPackages(filteredPackages);
-}
 
-function bookPackage(packageId) {
-    const pkg = tourPackages.find(p => p.id === packageId);
-    alert(`Thank you for your interest in "${pkg.title}"!\n\nYou will be redirected to our booking page where you can:\n• Select your travel dates\n• Choose room preferences\n• Add extra services\n• Complete your booking\n\nOur travel experts will contact you within 24 hours to confirm all details.`);
-}
+    renderPackages(allPackages);
+};
 
-// Initialize page
+window.bookPackage = async function(packageId, packageTitle, price) {
+    const user = await getCurrentUser();
+
+    if (!user) {
+        if (confirm('Please login to book a tour package. Would you like to go to the login page?')) {
+            window.location.href = 'login.html';
+        }
+        return;
+    }
+
+    const travelDate = prompt(`When would you like to travel?\n\nPlease enter the date (YYYY-MM-DD):`);
+    if (!travelDate) return;
+
+    const travelers = prompt(`How many travelers? (1-10)`, '2');
+    if (!travelers || travelers < 1 || travelers > 10) {
+        alert('Please enter a valid number of travelers (1-10)');
+        return;
+    }
+
+    const totalPrice = price * parseInt(travelers);
+    const specialRequests = prompt(`Any special requests or requirements? (Optional)`, '');
+
+    const result = await createTourBooking(packageId, travelDate, parseInt(travelers), totalPrice, specialRequests || '');
+
+    if (result.success) {
+        alert(`✓ Booking Confirmed!\n\nPackage: ${packageTitle}\nTravel Date: ${travelDate}\nTravelers: ${travelers}\nTotal Price: ₹${totalPrice.toLocaleString()}\n\nOur travel experts will contact you within 24 hours to confirm all details.`);
+    } else {
+        alert(`Booking failed: ${result.error}`);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
-    renderPackages(filteredPackages);
-});
+    loadPackages();
 
-// smooth scroll behavior
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('search');
+    if (searchTerm) {
+        const searchFilters = allPackages.filter(pkg =>
+            pkg.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            pkg.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        if (searchFilters.length > 0) {
+            renderPackages(searchFilters);
+        }
+    }
 });

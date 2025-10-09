@@ -1,9 +1,35 @@
+/* CSS Variables for Consistent Design */
+:root {
+    --primary-color: #2196f3;
+    --primary-dark: #1976d2;
+    --primary-light: #64b5f6;
+    --secondary-color: #f50057;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --bg-light: #f5f5f5;
+    --bg-white: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --spacing-unit: 8px;
+    --nav-height: 70px;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    padding-top: var(--nav-height);
 }
 
 /* Navigation Styles */
@@ -12,11 +38,18 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background: linear-gradient(to right, #1a237e, #283593);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    height: var(--nav-height);
+    box-shadow: var(--shadow);
+}
+
+nav a.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
 }
 
 .logo-container {
@@ -87,7 +120,7 @@ nav ul li a:hover {
     text-align: center;
     color: white;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1e3c72 0%, var(--primary-color) 50%, #2a5298 100%);
 }
 
 /* Animated Background Slideshow */
@@ -139,9 +172,9 @@ nav ul li a:hover {
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(102, 126, 234, 0.8) 0%,
-        rgba(118, 75, 162, 0.6) 50%,
-        rgba(255, 94, 77, 0.7) 100%
+        rgba(30, 60, 114, 0.85) 0%,
+        rgba(33, 150, 243, 0.7) 50%,
+        rgba(42, 82, 152, 0.85) 100%
     );
     z-index: 2;
 }
