@@ -152,7 +152,3 @@ All rights reserved © 2024 MysticMiles
 ## Team
 
 - **Souvik Kar** - Project Lead & Developer
-- **Moloy Malik** - Design Support
-- **Suchandra Sardar** - Content Advisor
-- **Soumyadip Naskar** - QA & Testing
-- **Subhankar Gupta** - Logistics & Research
